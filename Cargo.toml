@@ -1,11 +1,11 @@
 [package]
 name = "get-port"
-version = "3.0.0"
+version = "4.0.0"
 authors = ["Carlos Menezes <carlos-menezes212@hotmail.com>"]
-description = "Get an available port"
+description = "Get an available TCP/UDP port"
 license = "MIT"
 edition = "2018"
-repository = "https://github.com/carlos-menezes/get_port"
+repository = "https://github.com/carlos-menezes/get-port"
 keywords = ["port", "network"]
 readme = "README.md"
 

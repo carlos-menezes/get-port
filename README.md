@@ -1,55 +1,24 @@
-# get-port
-> Get an available port
+# get-port | [crate](https://crates.io/crates/get-port)
+> Get an available TCP/UDP port
 
 ---
 
-## Usage
+## Information
+- [crates.io package](https://crates.io/crates/get-port)
+- [Documentation](https://docs.rs/get-port/4.0.0/get_port/)
 
-#### 1. Get the first available port in range 1024 <-> 65535 (default range)
-```rust
-use get_port;
+---
 
-fn main() {
-    let port = get_port::get_port().unwrap();
-}
-```
+## Example
+For more examples, check `src/tests.rs`.
 
-#### 2. Get a port in a specific range
+```rs
+// Return an available port, from the supplied range, available on localhost.
 
-```rust
-use get_port;
+use get_port::tcp::TcpPort;
+use get_port::{Ops, Range};
+use get_port::udp::UdpPort;
 
-fn main() {
-    let port = get_port::get_port_in_range(get_port::PortRange { min: 5000, max: 6000 }).unwrap();
-}
-```
-
-#### 3. Get a specific port if available
-**NOTE:** returns the first one or falling back to an available port in range 1024 <-> 65535
-
-```rust
-use get_port;
-
-fn main() {
-    let port = get_port::get_port_prefer(vec![20, 60, 6943]).unwrap(); // Will return 6943 if available, as 0 <-> 1024 are system ports.
-}
-```
-
-#### 4. Exclude a list of ports and get the first available
-```rust
-use get_port;
-
-fn main() {
-    let port = get_port_except(vec!(1024, 1025, 1026)).unwrap(); // Will return 1027 if available, as 0 <-> 1024 are system ports.
-}
-```
-
-#### 4. Exclude a list of ports and get the first available in a specific range
-```rust
-use get_port;
-
-fn main() {
-    let range = PortRange { min: 5000, max: 7000 };
-    let p = get_port_in_range_except(range, vec!(5000)).unwrap(); // Will return 5001 if available.
-}
+let tcp_port = TcpPort::in_range("127.0.0.1", Range {min: 6000, max: 7000 }).unwrap();
+let udp_port = UdpPort::in_range("127.0.0.1", Range {min: 8000, max: 9000 }).unwrap();
 ```
