@@ -1,4 +1,5 @@
 pub mod tcp;
+mod tests;
 pub mod udp;
 
 pub struct Range {
